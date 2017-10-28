@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace RulWeb\Alert;
 
 use Illuminate\Support\Facades\Facade as BaseFacade;
@@ -13,7 +11,7 @@ class Facade extends BaseFacade
      *
      * @return string
      */
-    protected static function getFacadeAccessor(): string
+    protected static function getFacadeAccessor()
     {
         return 'alert';
     }

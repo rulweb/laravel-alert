@@ -1,9 +1,7 @@
-@if (session()->has('alert.message'))
-    <div class="alert {{ alert()->className(session()->get('alert.style')) }} alert-dismissible fade in show" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button><!-- /close -->
+@if (alert()->has())
+    <div class="alert alert-{{ alert()->style() }} alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 
-        {!! session()->get('alert.message') !!}
-    </div><!-- /alert -->
+        {!! alert()->message() !!}
+    </div>
 @endif

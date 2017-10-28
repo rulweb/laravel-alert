@@ -1,26 +1,23 @@
 <?php
 
-declare(strict_types=1);
-
 namespace RulWeb\Alert;
 
 use Illuminate\Session\Store;
 
+/**
+ * Class AlertPlugin
+ * @package App\Plugins
+ */
 class Alert
 {
     /**
-     * The session storage instance.
-     *
-     * @var \Illuminate\Session\Store
+     * @var Store
      */
-    protected $session;
+    public $session;
 
     /**
-     * Create a new alert instance.
-     *
-     * @param \Illuminate\Session\Store $session
-     *
-     * @return void
+     * Alert constructor.
+     * @param Store $session
      */
     public function __construct(Store $session)
     {
@@ -29,74 +26,81 @@ class Alert
 
     /**
      * @param string $message
-     * @param string $style
-     * @return \RulWeb\Alert\Alert
+     * @param string|null $style
+     * @return void
      */
-    public function flash($message, $style = 'info'): Alert
+    public function flash($message, $style = 'info')
     {
         $this->session->flash('alert.message', $message);
         $this->session->flash('alert.style', $style);
-
-        return $this;
     }
 
     /**
-     * Flash a danger alert.
-     *
-     * @param string $message
-     *
-     * @return \RulWeb\Alert\Alert
+     * @return bool
      */
-    public function danger(string $message): Alert
+    public function has() : bool
     {
-        return $this->flash($message, 'alert-danger');
+        return $this->session->has('alert.message');
     }
 
     /**
-     * Flash an error alert.
-     *
-     * @param string $message
-     *
-     * @return \RulWeb\Alert\Alert
+     * @return string
      */
-    public function error(string $message): Alert
+    public function message() : string
     {
-        return $this->danger($message);
+        return $this->session->get('alert.message');
     }
 
     /**
-     * Flash an info alert.
-     *
-     * @param string $message
-     *
-     * @return \RulWeb\Alert\Alert
+     * @return string
      */
-    public function info(string $message): Alert
+    public function style() : string
     {
-        return $this->flash($message, 'alert-info');
+        return $this->session->get('alert.style');
     }
 
     /**
-     * Flash a success alert.
-     *
      * @param string $message
-     *
-     * @return \RulWeb\Alert\Alert
+     * @return void
      */
-    public function success(string $message): Alert
+    public function danger($message)
     {
-        return $this->flash($message, 'alert-success');
+        $this->flash($message, 'danger');
     }
 
     /**
-     * Flash a warning alert.
-     *
      * @param string $message
-     *
-     * @return \RulWeb\Alert\Alert
+     * @return void
      */
-    public function warning(string $message): Alert
+    public function error($message)
     {
-        return $this->flash($message, 'alert-warning');
+        $this->flash($message, 'danger');
+    }
+
+    /**
+     * @param string $message
+     * @return void
+     */
+    public function success($message)
+    {
+        $this->flash($message, 'success');
+    }
+
+    /**
+     * @param string $message
+     * @return void
+     */
+    public function info($message)
+    {
+        $this->flash($message, 'info');
+    }
+
+    /**
+     * @param string $message
+     * @return void
+     */
+    public function warning($message)
+    {
+        $this->flash($message, 'warning');
     }
 }
