@@ -18,3 +18,31 @@ $ composer require rulweb/laravel-alert
 ```blade
 @include('alert::bootstrap')
 ```
+
+## Использование
+
+Использование [фасада](http://laravel.com/docs/facades)
+```php
+use RulWeb\Alert\Facades\Alert;
+```
+
+```php
+Alert::danger('Текст ошибки'); //или Alert::error('Текст ошибки');
+
+Alert::success('Текст ...');
+Alert::info('Текст ...');
+Alert::warning('Текст ...');
+```
+
+Использование хелперов
+```php
+// Использование методов
+alert()->error('Текст ошибки');
+
+// Передача сообщения и типа сообщения аргументами
+alert('Текст', 'info');
+```
+
+## License
+
+[MIT](LICENSE) © [RuleZzz](https://github.com/rulweb)

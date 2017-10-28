@@ -32,7 +32,7 @@
                 "RulWeb\\Alert\\ServiceProvider"
             ],
             "aliases": {
-                "Alert": "RulWeb\\Alert\\Facade"
+                "Alert": "RulWeb\\Alert\\Facades\\Alert"
             }
         }
     },

@@ -1,10 +1,10 @@
 <?php
 
-namespace RulWeb\Alert;
+namespace RulWeb\Alert\Facades;
 
 use Illuminate\Support\Facades\Facade as BaseFacade;
 
-class Facade extends BaseFacade
+class Alert extends BaseFacade
 {
     /**
      * Get the registered name of the component.

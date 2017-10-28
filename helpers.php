@@ -2,9 +2,14 @@
 
 if (!function_exists('alert')) {
     /**
-     * @return RulWeb\Alert\Alert
+     * @param null $message
+     * @param string $style
+     * @return \RulWeb\Alert\Alert
      */
-    function alert() {
+    function alert($message = null, $style = 'info') {
+        if($message)
+            return app('alert')->flash($message, $style);
+
         return app('alert');
     }
 }
